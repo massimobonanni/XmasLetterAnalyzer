@@ -13,6 +13,7 @@ namespace XmasLetterAnalyzer.CognitiveServices.Configurations
         public string Key { get; set; }
         public string Endpoint { get; set; }
         public string ModelName { get; set; }
+        public string PromptTextSAS { get; set; }
 
         public static OpenAILanguageServiceConfiguration Load(IConfiguration config)
         {
@@ -20,6 +21,8 @@ namespace XmasLetterAnalyzer.CognitiveServices.Configurations
             retVal.Key = config[$"{ConfigRootName}:Key"];
             retVal.Endpoint = config[$"{ConfigRootName}:Endpoint"];
             retVal.ModelName = config[$"{ConfigRootName}:ModelName"];
+            if (config[$"{ConfigRootName}:PromptTextSAS"] != null)
+                retVal.PromptTextSAS = config[$"{ConfigRootName}:PromptTextSAS"];
             return retVal;
         }
 
