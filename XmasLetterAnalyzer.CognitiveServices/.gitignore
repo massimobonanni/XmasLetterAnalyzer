@@ -398,6 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 #Local Files
-/Properties
 *.local.json
 *.local.development.json
