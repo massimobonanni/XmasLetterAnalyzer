@@ -18,6 +18,7 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 // Add services to the container.
 builder.Services.AddScoped<ILetterAnalyzer, CognitiveLetterAnalyzer>();
 builder.Services.AddScoped<IOcrService, VisionOcrService>();
+//builder.Services.AddScoped<IOcrService, IntelligenceDocumentService>();
 builder.Services.AddScoped<ILanguageService, OpenAILanguageService>();
 builder.Services.AddControllersWithViews();
 
