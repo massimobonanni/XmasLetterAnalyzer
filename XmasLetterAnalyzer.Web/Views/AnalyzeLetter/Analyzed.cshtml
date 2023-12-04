@@ -1,0 +1,63 @@
+﻿@model XmasLetterAnalyzer.Web.Models.UploadController.UploadViewModel
+@{
+}
+
+<div style="display: table; vertical-align: central">
+    <div style="display: table-cell;">
+        <img src="/img/analyzeletter.svg" alt="Analyze letter icon" title="Analyze letter" width="75">
+    </div>
+    <div style="display: table-cell;">
+        <h2>Analyze Letter - Results</h2>
+    </div>
+</div>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="data:image/png;base64,@Convert.ToBase64String(@Model.ImageData)" width="100%" />
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="fw-bold">Child name</td>
+                        <td class="fw-bold">@Model.LetterData.Data.Child.ChildName</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <table class="table" width="80%">
+                                <thead>
+                                    <tr>
+                                        <td colspan="4" align="center" class="fw-bold">Child gifts</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" class="fw-bolder">Type</td>
+                                        <td align="center" class="fw-bolder">Model</td>
+                                        <td align="center" class="fw-bolder">Brand</td>
+                                        <td align="center" class="fw-bolder">Material</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.LetterData.Data.Child.Gifts)
+                                    {
+                                        <tr>
+                                            <td>@item.Type</td>
+                                            <td>@item.Model</td>
+                                            <td>@item.Brand</td>
+                                            <td>@item.Material</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bolder">Letter Text</td>
+                        <td>@Model.LetterData.Data.Text</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

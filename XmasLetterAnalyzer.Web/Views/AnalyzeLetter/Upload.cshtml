@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Analyze Letter";
+}
+
+<div style="display: table; vertical-align: central">
+    <div style="display: table-cell;">
+        <img src="/img/analyzeletter.svg" alt="Analyze letter icon" title="Analyze letter" width="75">
+    </div>
+    <div style="display: table-cell;">
+        <h2>Analyze Letter</h2>
+    </div>
+</div>
+<br />
+@using (Html.BeginForm("Upload", "AnalyzeLetter", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="mb-3">
+        <label for="file" class="form-label fw-bold">Select the letter to analyze</label>
+        <br />
+        @Html.TextBox("file", "", new { type = "file" })
+    </div>
+    <div>
+    </div>
+    <div>
+        <input type="submit" value="Upload" class="btn btn-primary" />
+    </div>
+    @if (ViewBag.Message != null)
+    {
+        <div class="mt-3">
+            <div class="alert alert-danger">@ViewBag.Message</div>
+        </div>
+    }
+}
