@@ -22,8 +22,8 @@ EXAMPLE
 {
 	"childName" : "Massimo",
 	"gifts" : [{
-		"type"" : "footbal ball",
-		"brand"": "Nike"
+		"type" : "footbal ball",
+		"brand": "Nike"
 	}]
 }
 
@@ -32,12 +32,12 @@ EXAMPLE
 {
 	"childName" : "Marta",
 	"gifts" : [{
-		"type"" : "ball for volleyball",
-		"brand"": "AmazingBrand",
+		"type" : "ball for volleyball",
+		"brand": "AmazingBrand",
 		"material": "leather"
 	},
 	{
-		"type"" : "barbie",
-		"model"": "makeup artist"
+		"type" : "barbie",
+		"model": "makeup artist"
 	}]
 }

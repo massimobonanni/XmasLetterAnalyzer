@@ -22,7 +22,7 @@ EXAMPLE
 {
 	"childName" : "Massimo",
 	"gifts" : [{
-		"type"" : "footbal ball",
-		"brand"": "Nike"
+		"type" : "footbal ball",
+		"brand": "Nike"
 	}]
 }
