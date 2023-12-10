@@ -27,7 +27,7 @@ EXAMPLE
 	}]
 }
 
-"Hi Santa, I'm Marta and I want a AmazingBrand leather ball for volleyball and a barbie makeup artist."
+"Hi Santa, I want a AmazingBrand leather ball for volleyball and a barbie makeup artist. Marta"
 
 {
 	"childName" : "Marta",
