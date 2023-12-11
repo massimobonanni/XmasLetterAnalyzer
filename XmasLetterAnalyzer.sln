@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34302.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmasLetterAnalyzer.Web", "XmasLetterAnalyzer.Web\XmasLetterAnalyzer.Web.csproj", "{EB15F73C-A92A-47F7-9B47-7E13159F0593}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmasLetterAnalyzer.Web", "XmasLetterAnalyzer.Web\XmasLetterAnalyzer.Web.csproj", "{EB15F73C-A92A-47F7-9B47-7E13159F0593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmasLetterAnalyzer.Core", "XmasLetterAnalyzer.Core\XmasLetterAnalyzer.Core.csproj", "{F7537663-63BD-4286-A24F-176A7B87DD58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmasLetterAnalyzer.Core", "XmasLetterAnalyzer.Core\XmasLetterAnalyzer.Core.csproj", "{F7537663-63BD-4286-A24F-176A7B87DD58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XmasLetterAnalyzer.CognitiveServices", "XmasLetterAnalyzer.CognitiveServices\XmasLetterAnalyzer.CognitiveServices.csproj", "{3BF6AF4D-1A40-4726-92AE-6C3C06D931D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmasLetterAnalyzer.CognitiveServices", "XmasLetterAnalyzer.CognitiveServices\XmasLetterAnalyzer.CognitiveServices.csproj", "{3BF6AF4D-1A40-4726-92AE-6C3C06D931D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

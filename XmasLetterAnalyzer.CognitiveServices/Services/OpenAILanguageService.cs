@@ -88,7 +88,7 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
                          new ChatMessage(ChatRole.System, promptManager.GenerateSystemPrompt(text)),
                          new ChatMessage(ChatRole.User, promptManager.GenerateUserPrompt(text))
                      },
-                Temperature = 1.0f,
+                Temperature = 0.0f,
                 MaxTokens = 800,
                 DeploymentName = config.ModelName
             };
