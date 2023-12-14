@@ -90,6 +90,7 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
                      },
                 Temperature = 0.0f,
                 MaxTokens = 800,
+                ChoiceCount = 1,
                 DeploymentName = config.ModelName
             };
 

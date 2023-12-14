@@ -15,14 +15,21 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="data:image/png;base64,@Convert.ToBase64String(@Model.ImageData)" width="100%" />
+            @if (Model.ImageData != null && Model.ImageData.Any())
+            {
+                <img src="data:image/png;base64,@Convert.ToBase64String(@Model.ImageData)" width="100%" />
+            }
+            else
+            {
+                <img src="~/img/no-letter.png" width="100%" />
+            }
         </div>
         <div class="col-md-6">
             <table class="table">
                 <tbody>
                     <tr>
                         <td class="fw-bold">Child name</td>
-                        <td class="fw-bold">@Model.LetterData.Data.Child.ChildName</td>
+                        <td class="fw-bold">@Model.LetterData?.Data?.Child?.ChildName</td>
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
@@ -38,23 +45,29 @@
                                         <td align="center" class="fw-bolder">Material</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach (var item in Model.LetterData.Data.Child.Gifts)
-                                    {
-                                        <tr>
-                                            <td>@item.Type</td>
-                                            <td>@item.Model</td>
-                                            <td>@item.Brand</td>
-                                            <td>@item.Material</td>
-                                        </tr>
-                                    }
-                                </tbody>
+                                @if (Model.LetterData != null && Model.LetterData.Data != null && Model.LetterData.Data.Child != null && Model.LetterData.Data.Child.Gifts != null)
+                                {
+                                    <tbody>
+                                        @foreach (var item in Model.LetterData.Data.Child.Gifts)
+                                        {
+                                            <tr>
+                                                <td>@item.Type</td>
+                                                <td>@item.Model</td>
+                                                <td>@item.Brand</td>
+                                                <td>@item.Material</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                }
                             </table>
                         </td>
                     </tr>
                     <tr>
                         <td class="fw-bolder">Letter Text</td>
-                        <td>@Model.LetterData.Data.Text</td>
+                        @if (Model.LetterData != null && Model.LetterData.Data != null && Model.LetterData.Data.Text != null)
+                        {
+                            <td>@Model.LetterData.Data.Text</td>
+                        }
                     </tr>
                 </tbody>
             </table>
