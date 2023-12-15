@@ -33,10 +33,16 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
 
             ReadOperationResult results;
 
-            AnalyzeDocumentOperation operation = await client.AnalyzeDocumentAsync(WaitUntil.Completed, 
+            AnalyzeDocumentOperation operation = await client.AnalyzeDocumentAsync(WaitUntil.Started, 
                 "prebuilt-read", stream);
-        
-            if (operation.HasCompleted)
+
+            do
+            {
+                await Task.Delay(125);
+                await operation.UpdateStatusAsync( cancellationToken: token);
+            } while (!operation.HasCompleted);
+
+            if (operation.HasValue)
             {
                 AnalyzeResult result = operation.Value;
                 returnValue.Data = result.Content;
