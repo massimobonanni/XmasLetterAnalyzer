@@ -28,18 +28,23 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
         {
             var returnValue = new OcrServiceResponse<string>();
 
-            DocumentAnalysisClient client = new DocumentAnalysisClient(new Uri(this.config.Endpoint), 
+            DocumentAnalysisClient client = new DocumentAnalysisClient(new Uri(this.config.Endpoint),
                 new AzureKeyCredential(this.config.Key));
 
             ReadOperationResult results;
 
-            AnalyzeDocumentOperation operation = await client.AnalyzeDocumentAsync(WaitUntil.Started, 
-                "prebuilt-read", stream);
+            AnalyzeDocumentOptions options = new AnalyzeDocumentOptions();
+            options.Features.Add(DocumentAnalysisFeature.OcrHighResolution);
+            options.Features.Add(DocumentAnalysisFeature.FontStyling);
+            options.Features.Add(DocumentAnalysisFeature.Languages);
+            
+            AnalyzeDocumentOperation operation = await client.AnalyzeDocumentAsync(WaitUntil.Started,
+                "prebuilt-read", stream, options);
 
             do
             {
                 await Task.Delay(125);
-                await operation.UpdateStatusAsync( cancellationToken: token);
+                await operation.UpdateStatusAsync(cancellationToken: token);
             } while (!operation.HasCompleted);
 
             if (operation.HasValue)
