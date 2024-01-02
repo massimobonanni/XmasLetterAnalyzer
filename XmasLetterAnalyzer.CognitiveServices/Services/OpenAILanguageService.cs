@@ -44,7 +44,7 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
                 {
                     if (mainChoice.ContentFilterResults.Error == null)
                     {
-                        var responseText = completions.Choices[0].Message.Content;
+                        var responseText = mainChoice.Message.Content;
                         if (!string.IsNullOrWhiteSpace(responseText))
                         {
                             returnValue.Data = JsonUtility.Deserialize(responseText);
