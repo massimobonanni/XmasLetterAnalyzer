@@ -45,15 +45,15 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
 
             if (results.Status == OperationStatusCodes.Succeeded)
             {
-                StringBuilder respnseText = new StringBuilder();
+                StringBuilder responseText = new StringBuilder();
                 foreach (ReadResult page in results.AnalyzeResult.ReadResults)
                 {
                     foreach (Line line in page.Lines)
                     {
-                        respnseText.Append($"{line.Text} ");
+                        responseText.Append($"{line.Text} ");
                     }
                 }
-                returnValue.Data = respnseText.ToString();
+                returnValue.Data = responseText.ToString();
             }
             return returnValue;
         }
