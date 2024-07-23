@@ -28,8 +28,7 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
         {
             this.logger = loggerFactory.CreateLogger<OpenAILanguageService>();
             this.config = OpenAILanguageServiceConfiguration.Load(configuration);
-        }
-               
+        }     
 
         private void ExtractResult(LanguageServiceResponse<ChildData> returnValue, Response<ChatCompletions> response)
         {
@@ -89,7 +88,7 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
                          new ChatMessage(ChatRole.User, promptManager.GenerateUserPrompt(text))
                      },
                 Temperature = 0.0f,
-                MaxTokens = 800,
+                MaxTokens = 100,
                 ChoiceCount = 1,
                 DeploymentName = config.ModelName
             };
