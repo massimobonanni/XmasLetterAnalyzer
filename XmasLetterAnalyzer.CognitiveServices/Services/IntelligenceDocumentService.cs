@@ -1,14 +1,6 @@
 ﻿using Azure;
 using Azure.AI.FormRecognizer.DocumentAnalysis;
-using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
-using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using XmasLetterAnalyzer.CognitiveServices.Configurations;
 using XmasLetterAnalyzer.Core.Interfaces;
 using XmasLetterAnalyzer.Core.Responses;
@@ -30,8 +22,6 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
 
             DocumentAnalysisClient client = new DocumentAnalysisClient(new Uri(this.config.Endpoint),
                 new AzureKeyCredential(this.config.Key));
-
-            ReadOperationResult results;
 
             AnalyzeDocumentOptions options = new AnalyzeDocumentOptions();
             options.Features.Add(DocumentAnalysisFeature.OcrHighResolution);

@@ -1,12 +1,6 @@
-﻿using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
-using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
+﻿using Azure;
+using Azure.AI.Vision.ImageAnalysis;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using XmasLetterAnalyzer.CognitiveServices.Configurations;
 using XmasLetterAnalyzer.Core.Interfaces;
 using XmasLetterAnalyzer.Core.Responses;
@@ -26,35 +20,24 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
         {
             var returnValue = new OcrServiceResponse<string>();
 
-            ComputerVisionClient client =
-              new ComputerVisionClient(new ApiKeyServiceClientCredentials(this.config.Key))
-              { Endpoint = this.config.Endpoint };
+            ImageAnalysisClient client =
+              new ImageAnalysisClient(new Uri(this.config.Endpoint),
+                new AzureKeyCredential(this.config.Key));
 
-            ReadOperationResult results;
+            var imageData = BinaryData.FromStream(stream);
+            var visualFeature = VisualFeatures.Read;
 
-            ReadInStreamHeaders? textHeaders = await client.ReadInStreamAsync(stream, cancellationToken: token);
-            var operationId = textHeaders.GetOperationId();
+            var visionResponse = await client.AnalyzeAsync(imageData, visualFeature, cancellationToken: token);
 
-            do
+            if (!visionResponse.GetRawResponse().IsError && visionResponse.Value != null 
+                && visionResponse.Value.Read!=null)
             {
-                await Task.Delay(125);
-                results = await client.GetReadResultAsync(operationId, cancellationToken: token);
+                returnValue.Data = visionResponse.Value.Read.Blocks
+                    .SelectMany(block => block.Lines)
+                    .Select(line => line.Text)
+                    .Aggregate((a,b)=>a+" "+b);
             }
-            while (results.Status == OperationStatusCodes.Running ||
-                results.Status == OperationStatusCodes.NotStarted);
-
-            if (results.Status == OperationStatusCodes.Succeeded)
-            {
-                StringBuilder responseText = new StringBuilder();
-                foreach (ReadResult page in results.AnalyzeResult.ReadResults)
-                {
-                    foreach (Line line in page.Lines)
-                    {
-                        responseText.Append($"{line.Text} ");
-                    }
-                }
-                returnValue.Data = responseText.ToString();
-            }
+            
             return returnValue;
         }
 
