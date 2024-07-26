@@ -1,5 +1,5 @@
 ﻿using Azure;
-using Azure.AI.FormRecognizer.DocumentAnalysis;
+using Azure.AI.DocumentIntelligence;
 using Microsoft.Extensions.Configuration;
 using XmasLetterAnalyzer.CognitiveServices.Configurations;
 using XmasLetterAnalyzer.Core.Interfaces;
@@ -20,17 +20,19 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
         {
             var returnValue = new OcrServiceResponse<string>();
 
-            DocumentAnalysisClient client = new DocumentAnalysisClient(new Uri(this.config.Endpoint),
-                new AzureKeyCredential(this.config.Key));
+            AzureKeyCredential credential = new AzureKeyCredential(this.config.Key);
+            DocumentIntelligenceClient client = new DocumentIntelligenceClient(new Uri(this.config.Endpoint), credential);
 
-            AnalyzeDocumentOptions options = new AnalyzeDocumentOptions();
-            options.Features.Add(DocumentAnalysisFeature.OcrHighResolution);
-            options.Features.Add(DocumentAnalysisFeature.FontStyling);
-            options.Features.Add(DocumentAnalysisFeature.Languages);
-            
-            AnalyzeDocumentOperation operation = await client.AnalyzeDocumentAsync(WaitUntil.Started,
-                "prebuilt-read", stream, options);
+            var options = new List<DocumentAnalysisFeature>() {
+                    DocumentAnalysisFeature.OcrHighResolution,
+                    DocumentAnalysisFeature.Languages
+                };
 
+            var request = new AnalyzeDocumentContent();
+            request.Base64Source = BinaryData.FromStream(stream);
+
+            var operation = await client.AnalyzeDocumentAsync(WaitUntil.Started,
+                       "prebuilt-read", request, features: options, cancellationToken: token);
             do
             {
                 await Task.Delay(125);
