@@ -20,29 +20,36 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
         {
             var returnValue = new OcrServiceResponse<string>();
 
-            AzureKeyCredential credential = new AzureKeyCredential(this.config.Key);
-            DocumentIntelligenceClient client = new DocumentIntelligenceClient(new Uri(this.config.Endpoint), credential);
+            try
+            {
+                AzureKeyCredential credential = new AzureKeyCredential(this.config.Key);
+                DocumentIntelligenceClient client = new DocumentIntelligenceClient(new Uri(this.config.Endpoint), credential);
 
-            var options = new List<DocumentAnalysisFeature>() {
+                var options = new List<DocumentAnalysisFeature>() {
                     DocumentAnalysisFeature.OcrHighResolution,
                     DocumentAnalysisFeature.Languages
                 };
 
-            var request = new AnalyzeDocumentContent();
-            request.Base64Source = BinaryData.FromStream(stream);
+                var request = new AnalyzeDocumentContent();
+                request.Base64Source = BinaryData.FromStream(stream);
 
-            var operation = await client.AnalyzeDocumentAsync(WaitUntil.Started,
-                       "prebuilt-read", request, features: options, cancellationToken: token);
-            do
-            {
-                await Task.Delay(125);
-                await operation.UpdateStatusAsync(cancellationToken: token);
-            } while (!operation.HasCompleted);
+                var operation = await client.AnalyzeDocumentAsync(WaitUntil.Started,
+                           "prebuilt-read", request, features: options, cancellationToken: token);
+                do
+                {
+                    await Task.Delay(125);
+                    await operation.UpdateStatusAsync(cancellationToken: token);
+                } while (!operation.HasCompleted);
 
-            if (operation.HasValue)
+                if (operation.HasValue)
+                {
+                    AnalyzeResult result = operation.Value;
+                    returnValue.Data = result.Content;
+                }
+            }
+            catch (Exception ex)
             {
-                AnalyzeResult result = operation.Value;
-                returnValue.Data = result.Content;
+                throw;
             }
 
             return returnValue;
