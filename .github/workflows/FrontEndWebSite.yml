@@ -54,4 +54,4 @@ jobs:
           app-name: 'XLAFrontEnd'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6F0080D49CDF4AA184E1C1239C0391AF }}
+          publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE }}
