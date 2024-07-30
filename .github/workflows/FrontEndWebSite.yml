@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'XLAFrontEnd'
+          app-name: 'XmasLetterAnalyzer'
           slot-name: 'Production'
           package: .
           publish-profile: ${{ secrets.APP_SERVICE_PUBLISH_PROFILE }}
