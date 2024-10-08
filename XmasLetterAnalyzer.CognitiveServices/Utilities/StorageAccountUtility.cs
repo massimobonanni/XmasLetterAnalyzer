@@ -1,4 +1,5 @@
-﻿using Azure.Storage.Blobs;
+﻿using Azure.Identity;
+using Azure.Storage.Blobs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace XmasLetterAnalyzer.Core.Utilities
         public static async Task<string> DownloadText(string blobSasUrl)
         {
             // Create a BlobClient that represents a blob to download
-            BlobClient blob = new BlobClient(new Uri(blobSasUrl));
+            //BlobClient blob = new BlobClient(new Uri(blobSasUrl));
+            BlobClient blob = new BlobClient(new Uri(blobSasUrl),
+                new ManagedIdentityCredential());
 
             // Download the blob
             var response = await blob.DownloadAsync();

@@ -30,7 +30,7 @@ namespace XmasLetterAnalyzer.CognitiveServices.Services
             var visionResponse = await client.AnalyzeAsync(imageData, visualFeature, cancellationToken: token);
 
             if (!visionResponse.GetRawResponse().IsError && visionResponse.Value != null 
-                && visionResponse.Value.Read!=null)
+                && visionResponse.Value.Read != null)
             {
                 returnValue.Data = visionResponse.Value.Read.Blocks
                     .SelectMany(block => block.Lines)

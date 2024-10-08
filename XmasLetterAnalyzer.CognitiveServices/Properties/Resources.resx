@@ -124,13 +124,13 @@
     <value>Analyze the following letter: "{letterText}".
 Extract which gifts the child wants in the following JSON format:
 {
-	"childName" : "name of the child",
-	"gifts" : [{
-		"type" : "type of gift",
-		"brand": "brand of gift",
-		"material" : "material of gift",
-		"model": "model of gift"
-	}]
+ "childName" : "name of the child",
+ "gifts" : [{
+  "type" : "type of gift",
+  "brand": "brand of gift",
+  "material" : "material of gift",
+  "model": "model of gift"
+ }]
 }
 Return only the JSON.
 If a field is not present in the letter, it must not be present in the JSON.
@@ -141,11 +141,54 @@ EXAMPLE
 "Dear Santa Claus, I'm Massimo and I want a Nike football ball."
 
 {
-	"childName" : "Massimo",
-	"gifts" : [{
-		"type"" : "footbal ball",
-		"brand"": "Nike"
-	}]
+ "childName" : "Massimo",
+ "gifts" : [{
+  "type" : "footbal ball",
+  "brand": "Nike"
+ }]
+}</value>
+  </data>
+  <data name="UserPromptMoreSamples" xml:space="preserve">
+    <value>Analyze the following letter: "{letterText}".
+Extract which gifts the child wants in the following JSON format:
+{
+ "childName" : "name of the child",
+ "gifts" : [{
+  "type" : "type of gift",
+  "brand": "brand of gift",
+  "material" : "material of gift",
+  "model": "model of gift"
+ }]
+}
+Return only the JSON.
+If a field is not present in the letter, it must not be present in the JSON.
+If you cannot extract data, return an empty string.
+Avoid child can request danger toys like bombs, guns, rifles, daggers and similar. 
+
+EXAMPLE
+"Dear Santa Claus, I'm Massimo and I want a Nike football ball."
+
+{
+ "childName" : "Massimo",
+ "gifts" : [{
+  "type" : "footbal ball",
+  "brand": "Nike"
+ }]
+}
+
+"Hi Santa, I want a AmazingBrand leather ball for volleyball and a barbie makeup artist. Marta"
+
+{
+ "childName" : "Marta",
+ "gifts" : [{
+  "type" : "ball for volleyball",
+  "brand": "AmazingBrand",
+  "material": "leather"
+ },
+ {
+  "type" : "barbie",
+  "model": "makeup artist"
+ }]
 }</value>
   </data>
 </root>

@@ -73,13 +73,13 @@ namespace XmasLetterAnalyzer.CognitiveServices.Properties {
         ///   Looks up a localized string similar to Analyze the following letter: &quot;{letterText}&quot;.
         ///Extract which gifts the child wants in the following JSON format:
         ///{
-        ///	&quot;childName&quot; : &quot;name of the child&quot;,
-        ///	&quot;gifts&quot; : [{
-        ///		&quot;type&quot; : &quot;type of gift&quot;,
-        ///		&quot;brand&quot;: &quot;brand of gift&quot;,
-        ///		&quot;material&quot; : &quot;material of gift&quot;,
-        ///		&quot;model&quot;: &quot;model of gift&quot;
-        ///	}]
+        /// &quot;childName&quot; : &quot;name of the child&quot;,
+        /// &quot;gifts&quot; : [{
+        ///  &quot;type&quot; : &quot;type of gift&quot;,
+        ///  &quot;brand&quot;: &quot;brand of gift&quot;,
+        ///  &quot;material&quot; : &quot;material of gift&quot;,
+        ///  &quot;model&quot;: &quot;model of gift&quot;
+        /// }]
         ///}
         ///Return only the JSON.
         ///If a field is not present in the letter, it must not be present in the JSON.
@@ -92,6 +92,29 @@ namespace XmasLetterAnalyzer.CognitiveServices.Properties {
         internal static string DefaultUserPrompt {
             get {
                 return ResourceManager.GetString("DefaultUserPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Analyze the following letter: &quot;{letterText}&quot;.
+        ///Extract which gifts the child wants in the following JSON format:
+        ///{
+        /// &quot;childName&quot; : &quot;name of the child&quot;,
+        /// &quot;gifts&quot; : [{
+        ///  &quot;type&quot; : &quot;type of gift&quot;,
+        ///  &quot;brand&quot;: &quot;brand of gift&quot;,
+        ///  &quot;material&quot; : &quot;material of gift&quot;,
+        ///  &quot;model&quot;: &quot;model of gift&quot;
+        /// }]
+        ///}
+        ///Return only the JSON.
+        ///If a field is not present in the letter, it must not be present in the JSON.
+        ///If you cannot extract data, return an empty string.
+        ///Avoid child can request danger toys like bombs, guns, rifles [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string UserPromptMoreSamples {
+            get {
+                return ResourceManager.GetString("UserPromptMoreSamples", resourceCulture);
             }
         }
     }
