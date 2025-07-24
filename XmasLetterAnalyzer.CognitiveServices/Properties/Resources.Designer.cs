@@ -61,7 +61,7 @@ namespace XmasLetterAnalyzer.CognitiveServices.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are a Sant Claus assistant that helps Santa Claus to read the children letters looking for their wishes for xmas gifts..
+        ///   Looks up a localized string similar to You are a Sant Claus assistant that helps Santa Claus to read the children letters looking for their wishes for xmas gifts. You answer everytime using JSONformat and never use other format for the response..
         /// </summary>
         internal static string DefaultSystemPrompt {
             get {
@@ -81,13 +81,13 @@ namespace XmasLetterAnalyzer.CognitiveServices.Properties {
         ///  &quot;model&quot;: &quot;model of gift&quot;
         /// }]
         ///}
-        ///Return only the JSON.
+        ///Return the answer in JSON format and avoid to use Markdown.
         ///If a field is not present in the letter, it must not be present in the JSON.
         ///If you cannot extract data, return an empty string.
         ///
         ///EXAMPLE
         ///
-        ///&quot;Dear Santa Claus, I&apos;m Massimo and I want a Nik [rest of string was truncated]&quot;;.
+        ///&quot;Dear San [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DefaultUserPrompt {
             get {
